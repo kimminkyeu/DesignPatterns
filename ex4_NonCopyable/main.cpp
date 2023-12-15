@@ -22,8 +22,8 @@ namespace MK
 int main(void)
 {
 	MK::Foo f;
-	MK::Foo b = f;
-	MK::Foo c(f);
+//	MK::Foo b = f;
+//	MK::Foo c(f);
 	// 그러나, Foo 에서 복사생성자를 정의해주면 작동된다.
     return 0;
 }

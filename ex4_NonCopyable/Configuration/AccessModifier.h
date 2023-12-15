@@ -15,11 +15,9 @@ namespace MK
 /* class CantCopy : private NonCopyable <CantCopy> {}; */
 	class NonCopyable
 	{
-	// NOTE: 왜 protected로 소멸자를 두었는가 ?
-	// https://stackoverflow.com/questions/19579435/protected-non-virtual-destructor-in-the-base-class
 #if (MK_CPP_VER >= 11)
 	protected: NonCopyable() = default;
-	protected: ~NonCopyable() = default; // Protected non-virtual destructor
+	protected: ~NonCopyable() = default;
 	public: NonCopyable( const NonCopyable& ) = delete;
 	public: NonCopyable& operator=( const NonCopyable& ) = delete;
 #else
