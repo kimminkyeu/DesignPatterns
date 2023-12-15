@@ -2,9 +2,9 @@
 // Created by Minkyeu Kim on 12/13/23.
 //
 
+#pragma once
 #ifndef EX1_ASSERTION_CONFIGUTATION_H
 #define EX1_ASSERTION_CONFIGUTATION_H
-#pragma once
 
 #include <cassert>
 
