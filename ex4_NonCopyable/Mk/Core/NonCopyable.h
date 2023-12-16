@@ -5,7 +5,7 @@
 #ifndef EX1_ASSERTION_COPYABLEANDMOVABLETYPES_H
 #define EX1_ASSERTION_COPYABLEANDMOVABLETYPES_H
 
-#include "Config.h"
+#include "Predef.h"
 
 // --------------------------------------------------
 // NOTE: check Google C++ code standard...

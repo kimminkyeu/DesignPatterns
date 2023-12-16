@@ -7,6 +7,7 @@
 #define EX1_ASSERTION_CONFIGUTATION_H
 
 #include <cassert>
+#include "Predef.h"
 
 #define MK_ASSERT_COMPILE( developer, expr, formatString )				static_assert(expr, "[ " developer " : " formatString " ]")
 

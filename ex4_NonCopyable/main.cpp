@@ -5,9 +5,7 @@
 #define MK_DEBUG 1
 
 #include <iostream>
-#include "Configuration/Assert.h"
-#include "Configuration/SAL.h"
-#include "Configuration/CopyableAndMovableTypes.h"
+#include "Mk/Utility.h"
 
 namespace MK
 {
