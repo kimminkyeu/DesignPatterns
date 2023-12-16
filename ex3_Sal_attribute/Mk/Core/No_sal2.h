@@ -51,11 +51,11 @@
 #ifdef _Check_return_
 #undef _Check_return_
 #endif
-#define _Check_return_
+#define _Check_return_          [[nodiscard]] // TODO: 김민규. 이 부분은 C++17 이후 기능이니, 추후 수정 필요합니다.
 #ifdef _Must_inspect_result_
 #undef _Must_inspect_result_
 #endif
-#define _Must_inspect_result_
+#define _Must_inspect_result_   [[nodiscard]] // TODO: 김민규. 이 부분은 C++17 이후 기능이니, 추후 수정 필요합니다.
 #ifdef _Pre_satisfies_
 #undef _Pre_satisfies_
 #endif

@@ -8,6 +8,7 @@
 #include "Predef/Color.h"
 #include "Predef/Compiler.h"
 #include "Predef/Language.h"
+#include "Predef/Feature.h"
 #include "Predef/Namespace.h" // predefined namespace macros
 
 // ------------- settings -------------------------

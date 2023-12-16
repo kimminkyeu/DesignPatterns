@@ -7,10 +7,12 @@
 #define EX1_ASSERTION_CONFIGUTATION_H
 
 #include <cassert>
+#include "Predef.h"
 
 #define MK_ASSERT_COMPILE( developer, expr, formatString )				static_assert(expr, "[ " developer " : " formatString " ]")
 
-#define __MK_ASSERT_NOTE_IMPLEMENT( developer, expr, formatString )     if (false == static_cast<bool>(expr)) { fprintf(stderr, "Assertion failed: (%s)\n%s: %s\nat function %s, file %s, line %d.\n", #expr, developer, formatString, __PRETTY_FUNCTION__, __FILE__, __LINE__); abort(); }
+#define __MK_ASSERT_NOTE_IMPLEMENT( developer, expr, formatString )     if (false == static_cast<bool>(expr)) { fprintf(stderr, MK_COLOR_RED "Assertion failed: (%s), %s: %s\nAt function %s, file %s, line %d.\n" MK_COLOR_RESET, #expr, developer, formatString, __PRETTY_FUNCTION__, __FILE__, __LINE__); abort(); }
+
 #if defined ( MK_DEBUG )
 	#define MK_ASSERT_NOTE( developer, expr, formatString )				__MK_ASSERT_NOTE_IMPLEMENT( developer, expr, formatString )
 	#define MK_ASSERT_DEBUG( developer, expr, formatString )			__MK_ASSERT_NOTE_IMPLEMENT( developer, expr, formatString )
