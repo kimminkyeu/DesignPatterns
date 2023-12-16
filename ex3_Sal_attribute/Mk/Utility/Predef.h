@@ -14,6 +14,8 @@
 // ------------- settings -------------------------
 // MK_DEBUG / MK_DEV / MK_RELEASE
 #define MK_DEV
+
+// ------------- settings -------------------------
 // MK_DISABLE_DEPRECATION_WARNINGS
 
 // ------------- platform / language info ----------

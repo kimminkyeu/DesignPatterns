@@ -1,58 +1,42 @@
 #include "Mk/Utility.h"
+#include "Mk/SymNo32.h"
 
+enum class eErrInvalidContext : uint32_t // max 256
+{
+    None = 0,
+    A, // = 1
+    B, // = 2
+    C, // = 4
+    D, // = 5
 
-_Ret_maybenull_ void *MightReturnNullPtr2();
-
-_Check_return_void void doSomthing(_Out_ int* numPtr);
+    Count
+};
 
 // NOTE: _Check_return_
 // The checker reports an error if the function is called in a void context.
 // Annotates a return value and states that the caller should inspect it.
-_Check_return_ SymNo32 calculate() noexcept;
+_Check_return_ SymNo32 calculate(_In_opt_ int param) noexcept;
 
-enum class eErrInvalidContext : uint8_t // max 256
+SymNo32 calculate(int param) noexcept
 {
-    eErrInvalidContext_A = 0,
-    eErrInvalidContext_B, // = 1
-    eErrInvalidContext_C, // = 2
-    eErrInvalidContext_D, // = 4
-    eErrInvalidContext_E, // = 5
-
-    eErrInvalidContext_Count
-};
-
-// ... return eErrNo_InvalidHousing...
-// ... return SymNo32(0);
-class SymNo32 : private MK::NonCopyable
-{
-private: uint32_t _noRaw;
-public: explicit SymNo32(uint32_t rawNo);
-public: _Check_return_ uint32_t GetRaw() const noexcept;
-public: _Must_inspect_result_ bool IsFailed() const noexcept;
-// getString() --> SymNo32의 _noRaw에 대응하는 에러 문자열을 출력.
-};
-
-SymNo32::SymNo32(uint32_t rawNo) : _noRaw(rawNo) { /* ... */ };
-uint32_t SymNo32::GetRaw() const noexcept { return _noRaw; };
-bool SymNo32::IsFailed() const noexcept { return (0 == _noRaw); };
-
-SymNo32 calculate() noexcept
-{
-    if (2)
+    SymNo32 rv(0);
+    if ( 1 < param )
     {
-        return eErrInvalidContext::eErrInvalidContext_A;
+        rv.Set(eErrInvalidContext::D);
+        return rv;
     }
     return SymNo32(0);
 }
 
- void doSomething(int* numPtr)
+int main()
 {
-    *numPtr = 2;
-}
-
-int main(void)
-{
-    int num = 10;
-    doSomething(&num);
+    // NOTE: 함수의 return value는 성공, 처리 성공, 실패 여부만을 나타냅니다.
+    SymNo32 rv = calculate(2);
+    if (rv.IsFailed())
+    {
+        // NOTE: exception 방식을 사용하지 않는 이유는 구글 코드 스탠다드 참고.
+        //       https://google.github.io/styleguide/cppguide.html#Exceptions
+        fprintf(stderr, MK_COLOR_GREEN "%s\n" MK_COLOR_RESET, rv.GetSymbolString().c_str());
+    }
     return 0;
 }

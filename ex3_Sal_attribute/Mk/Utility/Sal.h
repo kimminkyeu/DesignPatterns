@@ -22,6 +22,6 @@
 #endif
 
 // 추가적인 annotation
-#define _Check_return_void
+#define _Check_return_void_
 
 #endif //EX1_ASSERTION_SAL_H
