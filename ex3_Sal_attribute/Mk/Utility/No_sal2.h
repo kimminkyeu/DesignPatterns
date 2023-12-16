@@ -32,30 +32,48 @@
 #undef _Deref_
 #endif
 #define _Deref_
+
 #ifdef _Null_
 #undef _Null_
 #endif
 #define _Null_
+
 #ifdef _Notnull_
 #undef _Notnull_
 #endif
 #define _Notnull_
+
 #ifdef _Maybenull_
 #undef _Maybenull_
 #endif
 #define _Maybenull_
+
 #ifdef _Const_
 #undef _Const_
 #endif
 #define _Const_
+
+// https://en.cppreference.com/w/cpp/language/attributes/noreturn
+// ------------------------
 #ifdef _Check_return_
-#undef _Check_return_
+#   undef _Check_return_
 #endif
-#define _Check_return_          [[nodiscard]] // TODO: 김민규. 이 부분은 C++17 이후 기능이니, 추후 수정 필요합니다.
+#if __has_attribute(nodiscard)
+#   if (11 < MK_CPP_VER)
+#       define _Check_return_   [[nodiscard]]
+#   else
+#       define _Check_return_   __attribute__ ((nodiscard))
+#   endif
+#else
+#   define _Check_return_
+#endif
+
+// ------------------------
 #ifdef _Must_inspect_result_
-#undef _Must_inspect_result_
+#   undef _Must_inspect_result_
 #endif
-#define _Must_inspect_result_   [[nodiscard]] // TODO: 김민규. 이 부분은 C++17 이후 기능이니, 추후 수정 필요합니다.
+#define _Must_inspect_result_   _Check_return_
+
 #ifdef _Pre_satisfies_
 #undef _Pre_satisfies_
 #endif

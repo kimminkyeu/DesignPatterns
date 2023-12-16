@@ -24,7 +24,6 @@ uint32_t SymNo32::GetRaw() const noexcept
 
 void SymNo32::SetRaw(uint32_t raw_no) noexcept
 {
-    MK_ASSERT_DEV("김민규", 0 <= raw_no, "noRaw가 0보다 작을 수 없습니다!");
     _raw_ = raw_no;
 }
 
