@@ -10,6 +10,9 @@ SymNo32 calculate(int param) noexcept
     if ( 1 < param )
     {
         rv.Set(eErrNoSecondGroupExample::A);
+        // SymNo32에 등록할 enum은 프로그래머가 직접 선언하는 것보다
+        // 모든 [ 심볼-넘버 : 심볼-문자열 ] 페어가 정의된 단일 파일 한개에서 관리하고
+        // 이 파일을 별도 처리기를 통해 헤더로 생성하는게 좋을 것 같습니다.
         return rv;
     }
     return SymNo32(0);
