@@ -6,26 +6,24 @@
 #define EX3_SAL_ATTRIBUTE_DEFINE_ENUM_ERRNO_INL
 
 #include <cstdint>      // alias like uint32_t
+//#define MK_CONTINUE_ENUM_AFTER(prevEnumClass)  __PrevCount = (static_cast<uint32_t>(prevEnumClass_Count) - 1),
 
-// NOTE: (1) 이렇게 하면 __PrevCount는 enum 자동완성에 표시되지 않는다. 좋은데... 왜 안뜨지?
-//       (2) 일단 cast 최대 크기인 uint64_t로 잡았다.
-#define MK_CONTINUE_ENUM_AFTER(prevEnumClass)  __PrevCount = (static_cast<uint32_t>(prevEnumClass::Count) - 1),
-
-enum class eErrNoFirstGroupExample : uint8_t // max 256
+enum eErrNoFirstGroup : uint8_t // max 256
 {
-    A = 0,
-    B,
-    C,
-    Count
+    eErrNoFirstGroup_A = 0,
+    eErrNoFirstGroup_B,
+    eErrNoFirstGroup_C,
+
+    eErrNoFirstGroup_Count
 };
 
-enum class eErrNoSecondGroupExample : uint8_t // max 256
+enum eErrNoSecondGroup : uint8_t // max 256
 {
-    MK_CONTINUE_ENUM_AFTER(eErrNoFirstGroupExample)
-    A,  // 3 -> "아이템 슬롯이 비정상 입니다."
-    B,  // 4
-    C,  // 5
-    Count
+    eErrNoSecondGroup_A = eErrNoFirstGroup_Count,  // 3 := "아이템 슬롯이 비정상 입니다."
+    eErrNoSecondGroup_B,  // 4
+    eErrNoSecondGroup_C,  // 5
+
+    eErrNoSecondGroup_Count
 };
 
 
